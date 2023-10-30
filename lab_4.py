@@ -43,15 +43,18 @@ while True:
     if main_input == "1":
         name = input("Введіть назву книги, яку ви бажаєте додати: ")
         while True:
-            total_pages = int(input("Введіть кількість сторінок у книзі "))
-            pages_read = int(input("Введіть кількість прочитаних сторінок у книзі "))
-            if total_pages >= pages_read:
-                new_book = Book(name, total_pages, pages_read)
-                Library.add_book(new_book)
-                print("Книгу було додано до бібліотеки")
-                break
-            else:
-                print("В книзі не може бути прочитано більше сторінок ніж зазначено. \nВведіть кількість сторінок ще раз: ")
+            try:
+                total_pages = int(input("Введіть кількість сторінок у книзі "))
+                pages_read = int(input("Введіть кількість прочитаних сторінок у книзі "))
+                if total_pages >= pages_read:
+                    new_book = Book(name, total_pages, pages_read)
+                    Library.add_book(new_book)
+                    print("Книгу було додано до бібліотеки")
+                    break
+                else:
+                    print("В книзі не може бути прочитано більше сторінок ніж зазначено. \nВведіть кількість сторінок ще раз: ")
+            except ValueError:
+                print("Невірний формат вводу. Введіть число.")
 
     if main_input == "2":
         Library.book_list()
